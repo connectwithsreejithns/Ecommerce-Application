@@ -1,0 +1,48 @@
+<section>
+  <div class="container">
+    <form id="checkout-form" method="post">
+      <div class="row">
+        <div class="form-group col-md-6 mt-5">
+          <h3>Enter Details</h3>
+          <label for="exampleInputEmail1">Address</label>
+          <input type="address" name="address" class="form-control" id="exampleInputAddress">
+          <label for="exampleInputEmail1">Pincode</label>
+          <input type="mobile" name="pincode" class="form-control" id="exampleInputAddress">
+          <label for="exampleInputEmail1">Phone number</label>
+          <input type="address" name="mobile" class="form-control" id="exampleInputAddress">
+          <input type="text" name="userId" id="" value="{{user._id}}" hidden>
+        </div>
+        <div class="border border-success rounded-top col-md-6 mt-5 mb-3">
+          <div class="mt-4">
+            <h3 style="color:green">Order Details</h3>
+            <h4>Total: Rs.{{total}}</h4>
+            <hr>
+            <div class="col-md-12">
+              <input type="radio" name="payment-method" value='COD' id="payment-method">COD</input>
+            </div>
+            <div class="col-md-12">
+              <input type="radio" name="payment-method" value='ONLINE' id="payment-method">Online Pay</input>
+            </div>
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-success mt-2">Checkout</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+<script>
+  $("#checkout-form").submit((e)=>{
+    e.preventDefault()//to prevent form submission default
+    $.ajax({
+      url:'/place-order',
+      method:'post',
+      data:$('#checkout-form').serialize(),//ser to get all data in form
+      success:(response)=>{
+        alert(response)
+      }
+    })
+  })
+</script>
